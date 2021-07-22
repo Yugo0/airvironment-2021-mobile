@@ -1,0 +1,12 @@
+workspace 'airvironment-2021-mobile'
+minimum_deployment_target = 14.1
+
+platform :ios, minimum_deployment_target
+
+target 'airvironment-2021-mobile' do
+	project 'airvironment-2021-mobile'
+	use_frameworks!
+
+	pod 'Alamofire'
+	pod 'Kingfisher'
+end
