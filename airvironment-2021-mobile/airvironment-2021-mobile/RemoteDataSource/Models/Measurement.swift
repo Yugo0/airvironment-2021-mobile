@@ -13,9 +13,9 @@ class Measurement: NSObject, Codable {
     var temperature: Float
     var humidity: Float
     var pollution: Float
-    var created: String
+    var created: Date
     
-    init(id: Int, temperature: Float, humidity: Float, pollution: Float, created: String) {
+    init(id: Int, temperature: Float, humidity: Float, pollution: Float, created: Date) {
         self.id = id
         self.temperature = temperature
         self.humidity = humidity

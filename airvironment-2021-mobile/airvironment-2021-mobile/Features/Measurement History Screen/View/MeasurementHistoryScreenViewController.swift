@@ -7,11 +7,18 @@
 
 import UIKit
 
-class MeasurementHistoryScreenViewController: UIViewController {
+class MeasurementHistoryScreenViewController: BaseViewController<MeasurementHistoryScreenViewModel> {
 
     @IBOutlet weak var historyTableView: UITableView!
     
-    let viewModel: MeasurementHistoryScreenViewModel = MeasurementHistoryScreenViewModel(repository: RepositoryImplementation())
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        viewModel = MeasurementHistoryScreenViewModel(repository: RepositoryImplementation())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var nameObserver: [NSKeyValueObservation]!
     

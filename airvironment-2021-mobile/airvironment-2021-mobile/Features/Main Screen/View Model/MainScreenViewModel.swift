@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainScreenViewModel: NSObject {
+class MainScreenViewModel: BaseViewModel {
     
     var repository: Repository
     @objc dynamic var measurement: Measurement?
@@ -21,12 +21,14 @@ class MainScreenViewModel: NSObject {
     }
     
     private func getLatestMeasurement() {
+        isLoading = true
         repository.getLatestMeasurement() { result in
             switch result {
             case .success(let measurement):
                 self.measurement = measurement
+                self.isLoading = false
             case .failure(let error):
-                break
+                self.isLoading = false
             }
         }
     }

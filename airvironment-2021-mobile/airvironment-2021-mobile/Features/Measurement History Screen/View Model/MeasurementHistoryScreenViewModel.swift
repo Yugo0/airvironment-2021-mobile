@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MeasurementHistoryScreenViewModel: NSObject {
+class MeasurementHistoryScreenViewModel: BaseViewModel {
     
     var repository: Repository
     @objc dynamic var measurements: MeasurementCollection?
@@ -21,12 +21,14 @@ class MeasurementHistoryScreenViewModel: NSObject {
     }
 
     private func getMeasurements() {
+        isLoading = true
         repository.getMeasurements() { result in
             switch result {
             case .success(let measurements):
                 self.measurements = measurements
+                self.isLoading = false
             case .failure(let error):
-                break
+                self.isLoading = false
             }
         }
     }
