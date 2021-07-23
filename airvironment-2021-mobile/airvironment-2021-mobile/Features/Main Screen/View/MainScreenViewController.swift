@@ -29,6 +29,11 @@ class MainScreenViewController: BaseViewController<MainScreenViewModel> {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        viewModel.timer.invalidate()
+        viewModel.timer = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

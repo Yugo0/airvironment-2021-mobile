@@ -12,15 +12,18 @@ class MainScreenViewModel: BaseViewModel {
     var repository: Repository
     @objc dynamic var measurement: Measurement?
     
+    var timer: Timer!
+    
     init(repository: Repository) {
         self.repository = repository
     }
     
     func onViewDidLoad() {
         getLatestMeasurement()
+        self.timer = Timer.scheduledTimer(timeInterval: 600.0, target: self, selector: #selector(getLatestMeasurement), userInfo: nil, repeats: true)
     }
     
-    private func getLatestMeasurement() {
+    @objc private func getLatestMeasurement() {
         isLoading = true
         repository.getLatestMeasurement() { result in
             switch result {
