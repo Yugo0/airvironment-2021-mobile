@@ -9,5 +9,5 @@ import UIKit
 
 protocol Repository {
     func getLatestMeasurement(result: @escaping ((Result<Measurement, Error>) -> Void))
-    func getMeasurements(result: @escaping ((Result<MeasurementCollection, Error>) -> Void))
+    func getMeasurements(meta: Meta, result: @escaping ((Result<MeasurementCollection, Error>) -> Void))
 }

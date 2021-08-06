@@ -7,6 +7,14 @@
 
 import UIKit
 
+extension Encodable {
+    func encode() throws -> [String: Any]? {
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(self)
+        return try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+    }
+}
+
 extension JSONDecoder {
     static func dateDecodingStrategy(_ decoder: Decoder) throws -> Date {
         let dateString = try decoder.singleValueContainer().decode(String.self)

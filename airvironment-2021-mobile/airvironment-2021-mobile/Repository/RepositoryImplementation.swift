@@ -15,8 +15,8 @@ class RepositoryImplementation: Repository {
         webRemoteDataSource.getLatestMeasurement(result: result)
     }
     
-    func getMeasurements(result: @escaping ((Result<MeasurementCollection, Error>) -> Void)) {
-        webRemoteDataSource.getMeasurements(result: result)
+    func getMeasurements(meta: Meta, result: @escaping ((Result<MeasurementCollection, Error>) -> Void)) {
+        webRemoteDataSource.getMeasurements(meta: meta, result: result)
     }
 }
 

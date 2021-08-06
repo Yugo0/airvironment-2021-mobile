@@ -28,8 +28,8 @@ class AlamofireDataSource: RemoteDataSource {
         }
     }
     
-    func getMeasurements(result: @escaping ((Result<MeasurementCollection, Error>) -> Void)) {
-        AF.request(Router.Measurement.getMeasurements, interceptor: nil).response { serverResponse in
+    func getMeasurements(meta: Meta, result: @escaping ((Result<MeasurementCollection, Error>) -> Void)) {
+        AF.request(Router.Measurement.getMeasurements(meta: meta), interceptor: nil).response { serverResponse in
             switch serverResponse.result {
             case.success(_):
                 do {

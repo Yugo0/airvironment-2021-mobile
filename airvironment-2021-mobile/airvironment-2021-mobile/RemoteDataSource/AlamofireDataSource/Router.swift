@@ -14,7 +14,7 @@ struct Router {
     
     enum Measurement: URLRequestConvertible {
         case getLatestMeasurement
-        case getMeasurements
+        case getMeasurements(meta: Meta?)
         
         var resource: String {
             switch self {
@@ -44,7 +44,8 @@ struct Router {
             switch self {
             case .getLatestMeasurement:
                 break
-            case .getMeasurements:
+            case let .getMeasurements(meta):
+                request = try URLEncoding.default.encode(request, with: meta.encode())
                 break
             }
             

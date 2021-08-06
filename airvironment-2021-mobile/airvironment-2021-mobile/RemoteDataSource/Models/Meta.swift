@@ -11,9 +11,9 @@ class Meta: NSObject, Codable {
     
     var page: Int
     var perPage: Int
-    var total: Int
+    var total: Int?
     
-    init(page: Int, perPage: Int, total: Int) {
+    init(page: Int, perPage: Int, total: Int?) {
         self.page = page
         self.perPage = perPage
         self.total = total

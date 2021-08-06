@@ -34,6 +34,7 @@ class MeasurementHistoryScreenViewController: BaseViewController<MeasurementHist
         nameObserver = [viewModel.observe(\.measurements, options: .new) { _, measurements  in
             if let measurements = measurements.newValue {
                 self.historyTableView.dataSource = self
+                self.historyTableView.reloadData()
 //                self.historyTableView.delegate = self
             }
         }]
@@ -43,13 +44,18 @@ class MeasurementHistoryScreenViewController: BaseViewController<MeasurementHist
 extension MeasurementHistoryScreenViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (viewModel.measurements?.response.count)!
+        return (viewModel.measurements?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: MeasurementHistoryTableViewCell.reusableIdentifier(), for: indexPath) as! MeasurementHistoryTableViewCell
-        if let measurements = viewModel.measurements?.response {
+        if let measurements = viewModel.measurements {
             cell.configure(measurement: measurements[indexPath.row])
+        }
+        
+        if (indexPath.row == viewModel.measurements.count - 1) {
+            viewModel.updateMeasurements()
         }
         
         return cell
